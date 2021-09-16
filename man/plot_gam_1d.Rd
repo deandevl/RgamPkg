@@ -21,7 +21,7 @@ plot_gam_1d(
   x_major_breaks = waiver(),
   y_limits = NULL,
   y_major_breaks = waiver(),
-  line_size = 1,
+  line_width = 1,
   line_color = "black"
 )
 }
@@ -67,9 +67,9 @@ smooth parameters. If not set then each smooth parameter has their own y axis sc
 addition the argument may be assigned to a named list (e.g. \code{list(x1 = seq(-3, 4, 1.0), x3 = seq(-2, 2, 0.5))}) of
 numeric vectors.}
 
-\item{line_size}{A numeric value that sets the thickness of lines if \code{connect} is TRUE.}
+\item{line_width}{A numeric value that sets the width of lines.}
 
-\item{line_color}{A string that sets the color of the lines if \code{connect} is TRUE.}
+\item{line_color}{A string that sets the color of the lines.}
 }
 \value{
 A ggplot2 plot object

@@ -15,7 +15,9 @@ plot_basis_splines_1d(
   x_major_breaks = waiver(),
   y_limits = NULL,
   y_major_breaks = waiver(),
-  line_type = "dashed"
+  line_type = "dashed",
+  line_color = "black",
+  line_width = 1
 )
 }
 \arguments{
@@ -44,6 +46,10 @@ smooth parameter. If not set then the smooth parameter has y axis scaling using 
 
 \item{line_type}{A string that sets the line type for the basis splines. Typical values are \code{twodash, solid, longdash, dotted, dotdash,
 dashed, blank}}
+
+\item{line_color}{A string that sets the color of the lines.}
+
+\item{line_width}{A numeric value that sets the width of lines.}
 }
 \value{
 A ggplot2 plot object

@@ -32,17 +32,27 @@ summary(mcycle_mod_gam)
 mgcv::plot.gam(mcycle_mod_gam, rug = FALSE)
 
 # plot the model using RregressPkg::plot_xy_fit()
-mcycle_gam_fit_plot <- RregressPkg::plot_xy_fit(
-  x = mcycle_mod_gam$model$times,
-  y = mcycle_mod_gam$model$accel,
-  fit = mcycle_mod_gam$fitted.values,
+predict_gam <- predict(mcycle_mod_gam, mcycle, type = "link",  se.fit = T)
+
+mcycle_gam_df <- data.frame(
+  times = mcycle_mod_gam$model$times,
+  accel = mcycle_mod_gam$model$accel,
+  fit = predict_gam$fit,
+  ci_lower = predict_gam$fit - (2 * predict_gam$se.fit),
+  ci_upper = predict_gam$fit + (2 * predict_gam$se.fit)
+)
+RplotterPkg::create_scatter_plot(
+  df = mcycle_gam_df,
+  aes_x = "times",
+  aes_y = "fit",
+  connect = T,
+  show_pts = F,
+  CI_lwr = "ci_lower",
+  CI_upr = "ci_upper",
+  CI_show_line = T,
+  CI_show_ribbon = T,
   title = "Head Acceleration in Simulated Motorcycle Accident",
-  subtitle = "Observations and fitted GAM model",
-  x_title = "times",
-  y_title = "accel",
-  fit_color = "red",
-  col_width = 6,
-  row_height = 6
+  subtitle = "Observations and fitted GAM model"
 )
 
 # plot the model's independent component "times" using RgamPkg::plot_gam_1d()

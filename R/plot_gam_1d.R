@@ -28,8 +28,8 @@
 #'  smooth parameters. If not set then each smooth parameter has their own y axis scaling using ggplot2 defaults. In
 #'  addition the argument may be assigned to a named list (e.g. \code{list(x1 = seq(-3, 4, 1.0), x3 = seq(-2, 2, 0.5))}) of
 #'  numeric vectors.
-#' @param line_size A numeric value that sets the thickness of lines if \code{connect} is TRUE.
-#' @param line_color A string that sets the color of the lines if \code{connect} is TRUE.
+#' @param line_width A numeric value that sets the width of lines.
+#' @param line_color A string that sets the color of the lines.
 #'
 #' @import ggplot2
 #' @import grid
@@ -61,7 +61,7 @@ plot_gam_1d <- function(
   x_major_breaks = waiver(),
   y_limits = NULL,
   y_major_breaks = waiver(),
-  line_size = 1,
+  line_width = 1,
   line_color = "black"
 ){
   if(is.null(gam_model) | !inherits(gam_model, "gam")){
@@ -132,7 +132,9 @@ plot_gam_1d <- function(
       y_limits = y_limits,
       y_major_breaks = y_breaks,
       connect = TRUE,
-      show_pts = FALSE
+      show_pts = FALSE,
+      line_width = line_width,
+      line_color = line_color
     )
 
     if(se){

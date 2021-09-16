@@ -18,6 +18,8 @@
 #'  smooth parameter. If not set then the smooth parameter has y axis scaling using ggplot2 defaults.
 #' @param line_type A string that sets the line type for the basis splines. Typical values are \code{twodash, solid, longdash, dotted, dotdash,
 #'  dashed, blank}
+#' @param line_width A numeric value that sets the width of lines.
+#' @param line_color A string that sets the color of the lines.
 #'
 #' @import ggplot2
 #' @import RplotterPkg
@@ -40,7 +42,9 @@ plot_basis_splines_1d <- function(
   x_major_breaks = waiver(),
   y_limits = NULL,
   y_major_breaks = waiver(),
-  line_type = "dashed"
+  line_type = "dashed",
+  line_color = "black",
+  line_width = 1.0
 ){
   # check gam_model
   if(is.null(gam_model) | !inherits(gam_model, "gam")){
@@ -97,7 +101,8 @@ plot_basis_splines_1d <- function(
     aes_color = "Function",
     connect = TRUE,
     connect_linetype = line_type,
-    line_size = 0.6,
+    line_width = line_width,
+    line_color = line_color,
     show_pts = FALSE,
     title = title,
     subtitle = subtitle,
